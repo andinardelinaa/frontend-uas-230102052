@@ -81,7 +81,9 @@ composer install
 cp .env.example .env
 ```
 APP_NAME=Laravel
+
 APP_URL=http://localhost:8000
+
 SESSION_DRIVER=file
 
 menjalankan server Front-End dengan perintah :
@@ -107,8 +109,58 @@ Server berjalan di:
 Server berjalan di:
 🔗 http://127.0.0.1:8000
 
+## 10. Membuat Tampilan Laravel dengan menggunakan Tailwind
+contoh dalam dashboard.blade.php
 
-## 10. membuat Fitur Search
+```bash
+@extends('layouts.main')
+
+@section('content')
+<section class="bg-white rounded-3xl shadow-xl p-8 flex flex-col md:flex-row justify-between items-center gap-8">
+  <div class="max-w-xl">
+    <h2 class="uppercase text-sm text-emerald-600 font-semibold mb-2">Selamat Datang!</h2>
+    <h1 class="text-4xl font-bold text-gray-800 leading-tight mb-4">Dashboard Pengelolaan Mahasiswa & User</h1>
+    <p class="text-gray-600 text-lg mb-6">
+      Pantau, kelola, dan analisa data dengan tampilan yang modern dan mudah dipahami.
+  </div>
+  <div class="relative w-full max-w-md">
+    <img src="https://www.sistemphp.com/wp-content/uploads/2016/04/skripsi-tesis-metode-anp.jpg" alt="Dashboard Ilustrasi" class="rounded-2xl shadow-lg w-full h-auto" />
+    <div class="absolute bottom-4 left-4 bg-white p-4 rounded-xl shadow-lg flex items-center gap-4">
+    </div>
+  </div>
+</section>
+@endsection
+```
+## 11. Membuat Controller dengan menggunakan perintah :
+
+```bash
+php artisan make:controller DashboardController
+```
+
+## 12. Membuat Route
+```bash
+<?php
+
+// use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Route;
+
+// Halaman Dashboard
+use App\Http\Controllers\DashboardController;
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+// Kajur
+use App\Http\Controllers\KajurController;
+Route::resource('kajur', KajurController::class);
+
+// User
+use App\Http\Controllers\UserController;
+Route::resource('user', UserController::class);
+
+Route::get('/', function () {
+    return view('layouts.dashboard');
+});
+```
+## 13. membuat Fitur Search
 
 Fitur ini memungkinkan pengguna mencari data user berdasarkan **username**.
 
