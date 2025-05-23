@@ -6,17 +6,17 @@ Informatics Engineering — Politeknik Negeri Cilacap
 GitHub: [@andinardelina](https://github.com/andinardelinaa)  
 LinkedIn: [linkedin.com/in/andinardelina](https://linkedin.com/in/andinardelina)
 
-## 1. Deskripsi Proyek
+## Deskripsi Proyek
 Sistem ini berisi CRUD data User dan Data Kajur Create, Read, Update, Delete 
 
-## 3.  Clone the Repository Backend Soal Tipe D
+## 1.  Clone the Repository Backend Soal Tipe D
 Clone repository backend dari GitHub:
 
 ```bash
 https://github.com/Alledanaralle/PBF.git
 cd PBF
 ```
-### 2️. Install dependensi
+### 2. Install dependensi
 
 Install semua dependensi yang dibutuhkan menggunakan Composer:
 
@@ -112,7 +112,7 @@ Server berjalan di:
 
 Fitur ini memungkinkan pengguna mencari data user berdasarkan **username**.
 
-### 1. Form Pencarian (`user.blade.php`)
+###  Form Pencarian (`user.blade.php`)
 
 ```bash
 <form method="GET" action="/user" class="mb-4">
@@ -138,7 +138,7 @@ Fitur ini memungkinkan pengguna mencari data user berdasarkan **username**.
 </table>
 ```
 
-2. Logika di UserController.php
+##  Logika di UserController.php
 Tambahkan fungsi berikut:
 
 ```bash
