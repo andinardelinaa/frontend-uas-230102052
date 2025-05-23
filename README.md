@@ -107,15 +107,98 @@ Server berjalan di:
 Server berjalan di:
 🔗 http://127.0.0.1:8000
 
-## 10.  Cara push di Github
-1. git init
-2. git remote add origin https://github.com/username/nama-repo.git
-3. git add .
-4. git commit -m "First commit"
-5. git branch -M main
-git push -u origin main
-6. git push origin main
 
+## 10. membuat Fitur Search
+
+Fitur ini memungkinkan pengguna mencari data user berdasarkan **username**.
+
+### 1. Form Pencarian (`user.blade.php`)
+
+```bash
+<form method="GET" action="/user" class="mb-4">
+  <input type="text" name="search" placeholder="Cari username..." class="px-4 py-2 border rounded-md w-64">
+  <button type="submit" class="bg-emerald-500 text-white px-4 py-2 rounded-md ml-2">Cari</button>
+</form>
+
+<table class="table-auto w-full mt-4">
+  <thead>
+    <tr>
+      <th class="border px-4 py-2">ID</th>
+      <th class="border px-4 py-2">Username</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach ($datas as $data)
+    <tr>
+      <td class="border px-4 py-2">{{ $data['id'] }}</td>
+      <td class="border px-4 py-2">{{ $data['username'] }}</td>
+    </tr>
+    @endforeach
+  </tbody>
+</table>
+```
+
+2. Logika di UserController.php
+Tambahkan fungsi berikut:
+
+```bash
+public function index(Request $request)
+{
+    $search = $request->query('search');
+
+    $response = Http::get('http://localhost:8080/user');
+
+    if ($response->successful()) {
+        $datas = $response->json();
+
+        if ($search) {
+            $datas = array_filter($datas, function($item) use ($search) {
+                return stripos($item['username'], $search) !== false;
+            });
+        }
+    } else {
+        $datas = [];
+    }
+
+    return view('user', ['datas' => $datas]);
+}
+```
+# Cara Push Project ke GitHub
+Berikut langkah-langkah untuk mengupload project ke GitHub:
+### 1. Inisialisasi Git
+    
+```bash
+git init
+```
+
+### 2. Tambahkan remote repository
+
+```bash
+git remote add origin https://github.com/andinardelinaa/frontend-uas-230102052.git
+```
+### 3. Tambahkan semua file
+
+```bash
+git add .
+```
+
+### 4. Commit pertama
+
+```bash
+git commit -m "First commit"
+```
+
+### 5. Ubah nama branch menjadi main
+
+```bash
+git branch -M main
+```
+
+### 6. Push ke GitHub
+
+```bash
+git push -u origin main
+```
 
 
 
