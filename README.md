@@ -70,7 +70,7 @@ B. Kajur
 
 ```bash
 composer create-project laravel/laravel:^10 frontend-uas-230102052
-cd laravel-FE-KRS
+cd laravel-frontend-uas-230102052
 ```
 ```bash
 composer install
